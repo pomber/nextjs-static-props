@@ -20,6 +20,20 @@ export async function getStaticProps() {
   };
 }
 
-export default function HomePage({ date }) {
-  return <h2>Coronavirus {date}</h2>;
+import { TreeMap } from "@nivo/treemap";
+
+export default function HomePage({ date, rows }) {
+  return (
+    <>
+      <h2>Coronavirus {date}</h2>
+      <TreeMap
+        root={{ children: rows }}
+        identity="country"
+        value="deaths"
+        width={402}
+        height={192}
+        innerPadding={1}
+      />
+    </>
+  );
 }
