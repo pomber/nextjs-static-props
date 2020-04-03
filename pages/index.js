@@ -9,8 +9,14 @@ export async function getStaticProps() {
   const countries = Object.keys(data);
   const aCountry = data[countries[0]];
   const { date } = aCountry[aCountry.length - 1];
+  const rows = countries
+    .map((country) => {
+      const { deaths } = data[country].find((r) => r.date === date);
+      return { country, deaths };
+    })
+    .filter((r) => r.deaths > 8);
   return {
-    props: { date },
+    props: { date, rows },
   };
 }
 
