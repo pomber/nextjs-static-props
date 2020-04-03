@@ -31,6 +31,14 @@ export default function HomePage({ date, rows }) {
     <>
       <h2>Coronavirus {date}</h2>
       <TreeMap
+        tile="binary"
+        colorBy="flag"
+        colors={{ scheme: "pastel1" }}
+        labelSkipSize={9}
+        label={({ value, flag }) => (
+          <tspan style={{ fontSize: 10 + value / 200 }} children={flag} />
+        )}
+        tooltip={(r) => `${r.value} deaths in ${r.id}`}
         root={{ children: rows }}
         identity="country"
         value="deaths"
