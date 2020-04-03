@@ -24,13 +24,26 @@ export async function getStaticProps() {
   };
 }
 
-import { TreeMap } from "@nivo/treemap";
+import { TreeMap, TreeMapDefaultProps as TreeMapDefault } from "@nivo/treemap";
+import Link from "next/link";
+
+function Node(props) {
+  const { country } = props.node.data;
+  return (
+    <Link href={`country/${country}`}>
+      <a>
+        <TreeMapDefault.nodeComponent {...props} />
+      </a>
+    </Link>
+  );
+}
 
 export default function HomePage({ date, rows }) {
   return (
     <>
       <h2>Coronavirus {date}</h2>
       <TreeMap
+        nodeComponent={Node}
         tile="binary"
         colorBy="flag"
         colors={{ scheme: "pastel1" }}
