@@ -16,5 +16,8 @@ export default function HomePage() {
   if (!data) {
     return <h1>Loading...</h1>;
   }
-  return <h1>Hello</h1>;
+  const countries = Object.keys(data);
+  const aCountry = data[countries[0]];
+  const { date } = aCountry[aCountry.length - 1];
+  return <h2>Coronavirus {date}</h2>;
 }
