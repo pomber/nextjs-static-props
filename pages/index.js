@@ -25,13 +25,16 @@ export async function getStaticProps() {
 }
 
 import { TreeMap, TreeMapDefaultProps as TreeMapDefault } from "@nivo/treemap";
+import Link from "next/link";
 
 function Node(props) {
   const { country } = props.node.data;
   return (
-    <a href={`country/${country}`}>
-      <TreeMapDefault.nodeComponent {...props} />
-    </a>
+    <Link href="/country/[name]" as={`/country/${country}`}>
+      <a>
+        <TreeMapDefault.nodeComponent {...props} />
+      </a>
+    </Link>
   );
 }
 
