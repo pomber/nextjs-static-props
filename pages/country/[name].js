@@ -24,10 +24,21 @@ export async function getStaticProps(context) {
   return { props: { name, rows } };
 }
 
+import { Stream } from "@nivo/stream";
+
 export default function Country({ name, rows }) {
   return (
     <>
       <h1 style={{ textAlign: "center" }}>{name}</h1>
+      <Stream
+        data={rows}
+        width={390}
+        height={160}
+        keys={["deaths", "confirmed"]}
+        offsetType="diverging"
+        colors={{ scheme: "pastel1" }}
+        enableGridX={false}
+      />
       <Link href="/">
         <a>Go Back</a>
       </Link>
